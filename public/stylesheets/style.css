@@ -1,0 +1,30 @@
+*{
+    margin: 0;
+    padding: 0;
+    font-family: sans-serif;
+
+}
+ul{
+    float: right;
+}
+ul li{
+    display: inline-block;
+    list-style-type: none ;
+}
+ header{
+    background-image: url(../images/library.jpg);
+    height: 100;
+    background-size: cover;
+    background-position: center;
+
+} 
+ul li a{
+    text-decoration: none;
+    color: rgb(2, 17, 29);
+    padding: 5px 20px;
+    border: 1px solid rgb(53, 39, 39);
+}
+ul li a:hover{
+    background-color: bisque;
+    color: black;
+}

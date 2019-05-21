@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <title>Document</title>
+    <style>
+           .center {
+  margin: auto;
+  width: 60%;
+  border: 3px solid  burlywood;;
+  padding: 10px;
+} 
+    </style>
+</head>
+<body>
+         <h2>Books</h2>
+        <table>
+                <tbody>
+                        <tr>
+                                <td>S.N</thead>
+                                <th>Books</th>
+                                <th>Author</th>
+                                <th></th>
+                        </tr>
+        <% books.forEach(function(book,i) { %>  
+                <tr>
+                        <td>
+                                <h3><strong><%= i+1 %></strong></h3>
+                        </td>
+                        <td>
+                                <h3><strong><%= book.title %></strong></h3>    
+                        </td>
+                        <td>
+                                <h3>
+                                        <strong><%= book.author %></strong>
+                                </h3>
+                        </td>
+                        <td></td>
+                       
+                </tr>             
+    
+         <% }) %>
+</body>
+</html>
