@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <title>Document</title>
+    <style>
+                .center {
+            margin: auto;
+            width: 60%;
+            border: 3px solid burlywood;
+            padding: 10px;
+          }
+              </style>
+    
+</head>
+<body>
+        <% books.forEach(function(book,i) { %>
+                        <div class="center">
+                                        <div class="well" style="margin-top: 8px"></div>
+                                        <h3><strong><%= book.title %></strong></h3>
+                                        <img class="centre-cropped" src="<%= book.source %>" alt="Image">
+                                        <h3><strong>By:<%= book.author %></strong></h3>
+                                        <p><%= book.details %></p>
+                                        <a class="btn btn-primary" href="/borrow/<%= book._id %>"><i class="fa fa-pencil"></i> Borrow</a></button><br><br>
+                                </div>                      
+                                <br><br>
+                                
+              <% }) %>
+    </table>
+</body>
+</html>

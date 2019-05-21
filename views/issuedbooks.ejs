@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <title>Document</title>
+    <style>
+                .center {
+            margin: auto;
+            width: 60%;
+            border: 3px solid burlywood;
+            padding: 10px;
+          }
+              </style>
+    
+</head>
+<body>
+        <table id="myTable">
+                <tr class="header">
+                  <th style="width:10%;">S.N</th>
+                  <th style="width:30%;">Books</th>
+                  <th style="width:30%;">Author</th>
+                  <th style="width:30%;">Issued Date</th>
+                </tr>
+                <% issuedBooks.forEach(function(book,i) { %>
+                <tr>
+                    <td>
+                        <%= i%>
+                    </td>
+                    <td>
+                        <%= book.title %>
+                    </td>
+                    <td>
+                        <%= book.author %>
+                    </td>
+                    <td>
+
+                    </td>
+                </tr>                    
+                <br><br>
+          <% }) %>
+
+              
+              </table>
+              <div>
+                  <input type="text" placeholder="Search Books">
+                  <!-- <a class="btn btn-primary" href="/borrow/<%= book._id %>"><i class="fa fa-pencil"></i> Borrow</a>      -->     </div> 
+              <br><br>
+              <a class="btn btn-primary" href="/viewbooks"><i class="fa fa-pencil"></i> View All</a>
+                <input type="submit" value="All Books" />
+            </form>
+             
+</body>
+</html>  
