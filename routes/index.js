@@ -4,6 +4,14 @@ var passport = require('passport');
 
 var studentData = require('../models/student');
 
+
+function login_required(req, res, next){
+    if(req.isAuthenticated()){
+      return next();
+    }
+    res.redirect('/login');
+  };
+
 /* GET home page. */
 router.get('/', function(req, res, next) {
   res.render('index', { title: 'Express' });
@@ -46,16 +54,10 @@ router.post('/login', passport.authenticate('local', {
     res.redirect('/home');
   })
 
-  router.get('/borrowbooks', isLoggedIn, function(req,res){
+  router.get('/borrowbooks',login_required, function(req,res){
     res.render('borrowbooks');
   })
    
-  function isLoggedIn(req, res, next){
-    if(req.isAuthenticated()){
-      return next();
-    }
-    res.redirect('/login');
-  };
   
 
 module.exports = router;
