@@ -18,4 +18,4 @@ var studentSchema =new mongoose.Schema({
 });
 studentSchema.plugin(passportLocalMongoose);
 const studentData = mongoose.model('studentData', studentSchema, 'students');
-module.exports = { studentData}
+module.exports = studentData
