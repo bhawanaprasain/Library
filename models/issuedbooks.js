@@ -12,8 +12,10 @@ var issuedBookSchema = mongoose.Schema({
         default: Date.now
     },
     issuedBy: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'studentData'
+        id: {
+            type: mongoose.Schema.Types.ObjectId,
+            ref: 'studentData'
+        }
     }
 
 });

@@ -33,8 +33,8 @@ router.post('/signup' ,function(req , res){
         return res.render('signup');
       }
       passport.authenticate("local")(req, res, function(){
-        console.log(req.body.username);
-        res.redirect("/admin");
+        console.log(req.user._id);
+        res.redirect("/admin" );
       })
     })
   });
@@ -48,11 +48,7 @@ router.get('/login', function(req,res){
 router.post('/login', passport.authenticate('local', {
   successRedirect: "/admin",
   failureRedirect: "/login",
-}), function(req,res) {
-  const username = req.body.username;
-  //console.log(username);
-  res.render('/admin');
-  });
+}));
 
   router.get('/userlogin.ejs', function(req,res){
     res.render('userlogin');
@@ -71,16 +67,30 @@ router.post('/login', passport.authenticate('local', {
   //   //   res.render('issuedbooks',{issuedBooks})
   //   // })
   //   });
-router.post('/userlogin',function (req,res) {
-  console.log(req.body.username)
-   username = req.body.username;
-  IssuedBooks.find({issuedBy: 'req.body.username'}).exec(function(err, books){
-    res.render('borrowbooks', {books});
+// router.post('/userlogin',function (req,res) {
+//   console.log(req.user);
+//   IssuedBooks.find({issuedBy:req.user._id}, (err, books) => {
+//     if(err) {
+//       console.log(err);
+//     } else {
+//       res.render('borrowbooks', {currentUser: req.user, books: books});
+//     }
+//   });
+//
+//   });
+router.post('/userlogin', function(req , res) {
 
+    passport.authenticate("local")(req, res, function () {
+      console.log(req.user._id);
+      res.redirect("/admin");
+    })
   });
 
 
-})
+
+
+
+
   router.get('/logout', function(req ,res){
     req.logout();
     res.redirect('/home');
@@ -98,6 +108,7 @@ router.post('/userlogin',function (req,res) {
       source: req.body.source
     });
     var promise = books.save();
+    console.log(books)
     promise.then((books)=>{ 
     Books.find().exec(function(err, books){
       res.render('viewbooks', {books});
@@ -113,7 +124,6 @@ router.post('/userlogin',function (req,res) {
   })
 
   router.get('/borrowbooks' ,function(req,res){
-    //console.log(username);
     Books.find().exec(function(err, books){
       res.render('borrowbooks', {books});
     });
@@ -123,7 +133,7 @@ router.post('/userlogin',function (req,res) {
     var bookId = req.params.id;
     Books.findOne({_id : bookId}).exec(function(err,book){
       var issuedBook= new IssuedBooks({
-        issuedBy: username,
+        //issuedBy: username,
         title: book.title,
         author: book.author,
         details: book.details,

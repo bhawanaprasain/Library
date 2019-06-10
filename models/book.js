@@ -1,6 +1,5 @@
 var mongoose = require('mongoose');
 
-
 const issueSchema = mongoose.Schema({
     student: {type: mongoose.Schema.Types.ObjectId, 
         ref: 'studentData'},
