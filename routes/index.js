@@ -82,14 +82,9 @@ router.post('/userlogin', function(req , res) {
 
     passport.authenticate("local")(req, res, function () {
       console.log(req.user._id);
-      res.redirect("/admin");
+      res.redirect("/borrowbooks");
     })
   });
-
-
-
-
-
 
   router.get('/logout', function(req ,res){
     req.logout();
@@ -101,6 +96,7 @@ router.post('/userlogin', function(req , res) {
   })
 
   router.post('/addbooks', function(req,res){
+    console.log(req.user._id);
     var books = new Books({
       title: req.body.title,
       author: req.body.author,
@@ -131,9 +127,10 @@ router.post('/userlogin', function(req , res) {
   
   router.get('/borrow/:id' ,function(req,res){
     var bookId = req.params.id;
+    console.log(req.user._id);
     Books.findOne({_id : bookId}).exec(function(err,book){
       var issuedBook= new IssuedBooks({
-        //issuedBy: username,
+       // userid: req.user._id,
         title: book.title,
         author: book.author,
         details: book.details,

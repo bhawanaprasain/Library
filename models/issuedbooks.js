@@ -2,6 +2,7 @@ var mongoose = require('mongoose');
 
 var issuedBookSchema = mongoose.Schema({
     studentId: mongoose.Schema.ObjectId ,
+    userid: mongoose.Schema.Types.ObjectId,
     borrowedBy: String,
     title: String,
     author: String,
