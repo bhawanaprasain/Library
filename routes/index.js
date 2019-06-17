@@ -97,6 +97,7 @@ router.post('/userlogin', function(req , res) {
 
   router.post('/addbooks', function(req,res){
     console.log(req.user._id);
+
     var books = new Books({
       title: req.body.title,
       author: req.body.author,
@@ -119,18 +120,21 @@ router.post('/userlogin', function(req , res) {
     });
   })
 
-  router.get('/borrowbooks' ,function(req,res){
+  router.get('/borrowbooks' ,  login_required, function(req,res){
+    console.log(req.user._id);
     Books.find().exec(function(err, books){
       res.render('borrowbooks', {books});
     });
   })
   
-  router.get('/borrow/:id' ,function(req,res){
+  router.get('/borrow/:id' ,login_required, function(req,res){
+    console.log(req.user._id);
+
     var bookId = req.params.id;
     console.log(req.user._id);
     Books.findOne({_id : bookId}).exec(function(err,book){
       var issuedBook= new IssuedBooks({
-       // userid: req.user._id,
+       userid: req.user._id,
         title: book.title,
         author: book.author,
         details: book.details,
@@ -196,13 +200,15 @@ book.findById(bookId).then(function (book) {
   //   })
   // })
   
-  router.get('/issuedbooks', function(req,res){
-    studentData.findOne({username: 'bhawana'}).populate().exec(function(err,issuedbooks){
-      console.log('issued books'+ issuedbooks);
+  router.get('/issuedbooks',login_required, function(req,res) {
+    // studentData.findOne({username: 'bhawana'}).populate().exec(function(err,issuedbooks){
+    //   console.log('issued books'+ issuedbooks);
+    // });
+    IssuedBooks.findOne({userid: req.user._id}).exec(function (err, issuedBooks) {
+      console.log(issuedBooks);
+      res.render('issuedbooks', {issuedBooks})
     });
-    // IssuedBooks.find().exec(function(err,issuedBooks){
-    //   res.render('issuedbooks',{issuedBooks})
-     })
+  })
 
  
   
