@@ -34,7 +34,7 @@ router.post('/signup' ,function(req , res){
       }
       passport.authenticate("local")(req, res, function(){
         console.log(req.user._id);
-        res.redirect("/admin" );
+        res.redirect("/borrowbooks");
       })
     })
   });
@@ -52,37 +52,21 @@ router.post('/login', passport.authenticate('local', {
 
   router.get('/userlogin.ejs', function(req,res){
     res.render('userlogin');
+
   });
-  
-  // router.post('/userlogin', passport.authenticate('local', {
-  //   successRedirect: "/issuedbooks",
-  //   failureRedirect: "/login",
-  // }), function(req,res) {
-  //   console.log(req.body.username)
-  //   IssuedBooks.findOne(id).exec(function (err,books) {
-  //     console.log(books)
-  //
-  //   })
-  //   // IssuedBooks.find().exec(function(err,issuedBooks){
-  //   //   res.render('issuedbooks',{issuedBooks})
-  //   // })
-  //   });
-// router.post('/userlogin',function (req,res) {
-//   console.log(req.user);
-//   IssuedBooks.find({issuedBy:req.user._id}, (err, books) => {
-//     if(err) {
-//       console.log(err);
-//     } else {
-//       res.render('borrowbooks', {currentUser: req.user, books: books});
-//     }
-//   });
-//
-//   });
+
 router.post('/userlogin', function(req , res) {
 
     passport.authenticate("local")(req, res, function () {
       console.log(req.user._id);
-      res.redirect("/borrowbooks");
+      // res.redirect("/borrowbooks");
+      Books.find().exec(function(err, books){
+        res.render('viewbooks', {books});
+      });
+      IssuedBooks.find({userid: req.user._id}).exec(function (err, issuedBooks) {
+        // console.log(issuedBooks);
+        res.render('issuedbooks', {issuedBooks})
+      });
     })
   });
 
@@ -96,7 +80,7 @@ router.post('/userlogin', function(req , res) {
   })
 
   router.post('/addbooks', function(req,res){
-    console.log(req.user._id);
+    // console.log(req.user._id);
 
     var books = new Books({
       title: req.body.title,
@@ -150,31 +134,9 @@ router.post('/userlogin', function(req , res) {
           res.render('viewbooks', {books});
         })
     })
-     /*
-Now lets assume we have a book with id - bookID
-To issue a book,
-similarly studentId has the id of student
 
-
-book.findById(bookId).then(function (book) {
-   if(book.currentIssue){
-       // book is currently issued
-       // move it to history
-       let deadline = new Date();
-       deadline.setDate(deadline.getDate() + 30); // 1 month later
-
-       book.issues.push(book.currentIssue);
-       book.issue = {
-           student: studentId,
-           issuedAt: new Date(),
-           deadline: deadline
-       }
-   }
-});
-
- */
     });
-  }) 
+  })
 
   router.get('/return/:id' , function(req,res){
     var returnId = req.params.id;
@@ -204,8 +166,8 @@ book.findById(bookId).then(function (book) {
     // studentData.findOne({username: 'bhawana'}).populate().exec(function(err,issuedbooks){
     //   console.log('issued books'+ issuedbooks);
     // });
-    IssuedBooks.findOne({userid: req.user._id}).exec(function (err, issuedBooks) {
-      console.log(issuedBooks);
+    IssuedBooks.find({userid: req.user._id}).exec(function (err, issuedBooks) {
+     // console.log(issuedBooks);
       res.render('issuedbooks', {issuedBooks})
     });
   })

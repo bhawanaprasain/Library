@@ -7,50 +7,28 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <title>Document</title>
     <style>
-                .center {
+        .center {
             margin: auto;
             width: 60%;
             border: 3px solid burlywood;
             padding: 10px;
-          }
-              </style>
-    
+        }
+    </style>
+
 </head>
 <body>
-        <table id="myTable">
-                <tr class="header">
-                  <th style="width:10%;">S.N</th>
-                  <th style="width:30%;">Books</th>
-                  <th style="width:30%;">Author</th>
-                  <th style="width:30%;">Issued Date</th>
-                </tr>
-                <% issuedBooks.forEach(function(book,i) { %>
-                <tr>
-                    <td>
-                        <%= i%>
-                    </td>
-                    <td>
-                        <%= book.title %>
-                    </td>
-                    <td>
-                        <%= book.author %>
-                    </td>
-                    <td>
+<% issuedBooks.forEach(function(book,i) { %>
+    <div class="center">
+        <div class="well" style="margin-top: 8px"></div>
+        <h3><strong><%= book.title %></strong></h3>
+        <img class="centre-cropped" src="<%= book.source %>" alt="Image">
+        <h3><strong>By:<%= book.author %></strong></h3>
+        <p><%= book.details %></p>
+        <a class="btn btn-primary" href="/return/<%= book._id %>"><i class="fa fa-pencil"></i> Return</a></button><br><br>
+    </div>
+    <br><br>
 
-                    </td>
-                </tr>                    
-                <br><br>
-          <% }) %>
-
-              
-              </table>
-              <div>
-                  <input type="text" placeholder="Search Books">
-                  <!-- <a class="btn btn-primary" href="/borrow/<%= book._id %>"><i class="fa fa-pencil"></i> Borrow</a>      -->     </div> 
-              <br><br>
-              <a class="btn btn-primary" href="/viewbooks"><i class="fa fa-pencil"></i> View All</a>
-                <input type="submit" value="All Books" />
-            </form>
-             
+<% }) %>
+</table>
 </body>
-</html>  
+</html>
