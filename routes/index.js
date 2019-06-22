@@ -59,7 +59,6 @@ router.post('/userlogin', function(req , res) {
 
     passport.authenticate("local")(req, res, function () {
       console.log(req.user._id);
-      // res.redirect("/borrowbooks");
 
       IssuedBooks.find({userid: req.user._id}).exec(function (err, issuedBooks) {
         // console.log(issuedBooks);
@@ -129,7 +128,6 @@ router.post('/userlogin', function(req , res) {
           console.log("Books removed from admin page");
         });
           IssuedBooks.find({userid: req.user._id}).exec(function (err, issuedBooks) {
-            // console.log(issuedBooks);
             res.render('issuedbooks', {issuedBooks})
           });
     })
@@ -150,32 +148,18 @@ router.post('/userlogin', function(req , res) {
       IssuedBooks.remove({_id:req.params.id}, function(err,retBooks){
         console.log('returned books has been added to admin page and has been removed from borrowbooks page');
         IssuedBooks.find({userid: req.user._id}).exec(function (err, issuedBooks) {
-          // console.log(issuedBooks);
           res.render('issuedbooks', {issuedBooks})
       })
 
       var promise = returnedBook.save();
-      // promise.then((returnedBook)=>{
-      //   IssuedBooks.find({userid: req.user._id}).exec(function (err, issuedBooks) {
-      //     // console.log(issuedBooks);
-      //     res.render('issuedbooks', {issuedBooks})
-      //   });
+
       })
     })
   })
 
-  // router.get('/returnbooks', function(req,res){
-  //   IssuedBooks.find().exec(function(err,booksToBeReturned){
-  //     res.render('returnbooks',{booksToBeReturned})
-  //   })
-  // })
-  
   router.get('/issuedbooks',login_required, function(req,res) {
-    // studentData.findOne({username: 'bhawana'}).populate().exec(function(err,issuedbooks){
-    //   console.log('issued books'+ issuedbooks);
-    // });
+
     IssuedBooks.find({userid: req.user._id}).exec(function (err, issuedBooks) {
-     // console.log(issuedBooks);
       res.render('issuedbooks', {issuedBooks})
     });
   })
