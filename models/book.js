@@ -10,6 +10,8 @@ const issueSchema = mongoose.Schema({
 var bookSchema = mongoose.Schema({
     title: String,
     author: String,
+    details: String,
+    source: String,
     created: {
         type: Date,
         default: Date.now

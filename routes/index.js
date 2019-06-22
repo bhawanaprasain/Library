@@ -60,9 +60,7 @@ router.post('/userlogin', function(req , res) {
     passport.authenticate("local")(req, res, function () {
       console.log(req.user._id);
       // res.redirect("/borrowbooks");
-      Books.find().exec(function(err, books){
-        res.render('viewbooks', {books});
-      });
+
       IssuedBooks.find({userid: req.user._id}).exec(function (err, issuedBooks) {
         // console.log(issuedBooks);
         res.render('issuedbooks', {issuedBooks})
@@ -130,9 +128,10 @@ router.post('/userlogin', function(req , res) {
         Books.remove({_id : req.params.id},function(err ,delBook){
           console.log("Books removed from admin page");
         });
-          Books.find().exec(function(err, books){
-          res.render('viewbooks', {books});
-        })
+          IssuedBooks.find({userid: req.user._id}).exec(function (err, issuedBooks) {
+            // console.log(issuedBooks);
+            res.render('issuedbooks', {issuedBooks})
+          });
     })
 
     });
@@ -147,11 +146,20 @@ router.post('/userlogin', function(req , res) {
         source: issuedBook.source,
         details: issuedBook.details
       });
+
+      IssuedBooks.remove({_id:req.params.id}, function(err,retBooks){
+        console.log('returned books has been added to admin page and has been removed from borrowbooks page');
+        IssuedBooks.find({userid: req.user._id}).exec(function (err, issuedBooks) {
+          // console.log(issuedBooks);
+          res.render('issuedbooks', {issuedBooks})
+      })
+
       var promise = returnedBook.save();
-      promise.then((returnedBook)=>{
-        IssuedBooks.remove({_id:req.params.id}, function(err,retBooks){
-          console.log('returned books has been added to admin page and has been removed from borrowbooks page');
-        })
+      // promise.then((returnedBook)=>{
+      //   IssuedBooks.find({userid: req.user._id}).exec(function (err, issuedBooks) {
+      //     // console.log(issuedBooks);
+      //     res.render('issuedbooks', {issuedBooks})
+      //   });
       })
     })
   })

@@ -9,13 +9,14 @@
     <title>Document</title>
 </head>
  <body>
+ <% include nav.ejs %>
 
-         <div class="top-content">
+ <div class="top-content">
                 <div class="container">
     
                     <div class="row">
-                        <div class="col-sm-8 col-sm-offset-2 text">
-                            <h2>ICES</h2><br>
+                        <div class="col-sm-8 col-sm-offset-2 text" style="margin-top: 30px">
+                            <h2>Open Library</h2><br>
                         </div>
                     </div>
     
@@ -39,66 +40,18 @@
                                         <input type="password" name="password" placeholder="Password..." class="form-control" id="password">
                                     </div>
     
-                                    <div class="form-group">
-                                        <input type="password" name="repassword" placeholder="Repeat Password..." class="form-control" id="repassword">
-                                    </div>
-    
-                                    <button type="submit" class="btn">Sign me up!</button>
+                                    <button type="submit" class="btn btn-primary" style="background-color: #0c5460;">Sign me up!</button>
                                 </form>
                             </div>
                         </div>
     
                     </div>
-            <p><a href="/login">Already have an account?</a></p>
+            <p><a style="color: #0c5460;"  href="/login">Already have an account?</a></p>
+
             </div>
             </div>
+ <% include footer.ejs %>
 
 
-<!-- 
-            <section class="fdb-block">
-                <div class="container">
-                  <div class="row justify-content-center">
-                    <div class="col-12 col-md-8 col-lg-7 col-md-5 text-center">
-                      <div class="fdb-box fdb-touch">
-                        <div class="row">
-                          <div class="col">
-                            <h1>Register</h1>
-                          </div>
-                        </div>
-                        <form action="/signup" method="POST">
-                        <div class="row">
-                          <div class="col mt-4">
-                            <input type="text" name="username" class="form-control" placeholder="Name">
-                          </div>
-                        </div>
-                        <div class="row mt-4">
-                          <div class="col">
-                            <input type="text" name="email" class="form-control" placeholder="Email">
-                          </div>
-                        </div>
-                        <div class="row mt-4">
-                          <div class="col">
-                            <input type="password" name="password" class="form-control mb-1" placeholder="Password">
-                          </div> 
-                        </div>
-                        <div class="row mt-4">
-                            <div class="col">
-                                    <button class="btn btn-primary" type="submit">Submit</button>
-                            </div> 
-                        </div>             
-                    </form>
-
-                        <div class="row mt-4">
-                          <div class="col">
-                            <p class="text-right"><a href="/login">Already have an account?</a></p>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </section> -->
-    
-    
-</body>
+ </body>
 </html>

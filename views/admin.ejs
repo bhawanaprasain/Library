@@ -18,6 +18,7 @@
 </head>
 <body>
 
+<% include nav.ejs %>
 
         <div class="jumbotron">
                 <h2>Add books </h2><br>
@@ -38,12 +39,13 @@
                             <label>Description : </label>
                             <input type="text" name="details" class="form-control" id="details" placeholder="Details" />
                     </div>
-                    <button type="submit" class="btn btn-success">Add</button>&nbsp
+                    <button type="submit" class="btn btn-success"  style="background-color: #0c5460;">Add</button>&nbsp
               </form>
               <br><br>
               <div>          
-                <a href="userlogin.ejs"><button class="btn btn-success">Issue Books</button></a>&nbsp
+                <a href="userlogin.ejs"><button class="btn btn-success" style="background-color: #0c5460;">Issue </button></a>&nbsp
               </div>
+            <% include footer.ejs %>
 
 </body>
 </html>

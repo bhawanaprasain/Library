@@ -9,26 +9,41 @@
     <style>
                 .center {
             margin: auto;
-            width: 60%;
-            border: 3px solid burlywood;
+            width: 40%;
+            border: 3px solid #062c33;
+            color: #062c33;
             padding: 10px;
           }
+                .heading {
+                    margin: auto;
+                    width: 30%;
+                    padding: 10px;
+                }
               </style>
     
 </head>
 <body>
+
+
+<% include nav.ejs %>
+
+<div class="heading">
+    <h2>Available books in the bookstore</h2>
+
+</div>
         <% books.forEach(function(book,i) { %>
                         <div class="center">
                                         <div class="well" style="margin-top: 8px"></div>
                                         <h3><strong><%= book.title %></strong></h3>
-                                        <img class="centre-cropped" src="<%= book.source %>" alt="Image">
+                                        <img class="centre-cropped" src="<%= book.source %>">
                                         <h3><strong>By:<%= book.author %></strong></h3>
                                         <p><%= book.details %></p>
-                                        <a class="btn btn-primary" href="/borrow/<%= book._id %>"><i class="fa fa-pencil"></i> Borrow</a></button><br><br>
-                                </div>                      
+                                </div>
                                 <br><br>
                                 
               <% }) %>
     </table>
+<% include footer.ejs %>
+
 </body>
 </html>

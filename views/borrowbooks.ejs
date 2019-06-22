@@ -24,11 +24,13 @@
         <img class="centre-cropped" src="<%= book.source %>" alt="Image">
         <h3><strong>By:<%= book.author %></strong></h3>
         <p><%= book.details %></p>
-        <a class="btn btn-primary" href="/borrow/<%= book._id %>"><i class="fa fa-pencil"></i> Borrow</a></button><br><br>
+        <a class="btn btn-primary" style="background-color: #0c5460;" href="/borrow/<%= book._id %>"><i class="fa fa-pencil"></i> Borrow</a></button><br><br>
     </div>
     <br><br>
 
 <% }) %>
 </table>
+<% include footer.ejs %>
+
 </body>
 </html>

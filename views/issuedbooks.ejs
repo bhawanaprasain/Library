@@ -13,10 +13,16 @@
             border: 3px solid burlywood;
             padding: 10px;
         }
+        .borrow {
+            margin: auto;
+            width: 60%;
+            padding: 10px;
+        }
     </style>
 
 </head>
 <body>
+<% include nav.ejs %>
 <% issuedBooks.forEach(function(book,i) { %>
     <div class="center">
         <div class="well" style="margin-top: 8px"></div>
@@ -24,11 +30,17 @@
         <img class="centre-cropped" src="<%= book.source %>" alt="Image">
         <h3><strong>By:<%= book.author %></strong></h3>
         <p><%= book.details %></p>
-        <a class="btn btn-primary" href="/return/<%= book._id %>"><i class="fa fa-pencil"></i> Return</a></button><br><br>
+        <a class="btn btn-primary" style="background-color: #0c5460;" href="/return/<%= book._id %>"><i class="fa fa-pencil"></i> Return</a></button><br><br>
     </div>
     <br><br>
 
 <% }) %>
-</table>
+
+<div class="borrow">
+    <a class="btn btn-primary" style="background-color: #0c5460;" href="/borrowbooks"><i class="fa fa-pencil"></i> Borrow</a></button><br><br>
+</div>
+
+<% include footer.ejs %>
+
 </body>
 </html>

@@ -9,8 +9,8 @@
     <title>Login</title>
 </head>
 <body>
-
-    1<form action="/login" method="POST" class="container">
+<% include nav.ejs %>
+<form action="/login" method="POST" class="container">
               <div class="form-group">
                 <label for="name">Name</label>
                 <input type="text" class="form-control" id="name" placeholder="Enter username" name="username">
@@ -22,8 +22,9 @@
                   <input type="password" class="form-control" id="password" placeholder="Password" name="password">
                 </div>
                 
-                <button type="submit" class="btn btn-primary" href='/submit'>Submit</button>
+                <button type="submit" class="btn btn-primary" style="background-color: #0c5460;" href='/submit'>Submit</button>
     </form>
-    
+    <% include footer.ejs %>
+
 </body>
 </html>
